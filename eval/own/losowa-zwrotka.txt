@@ -1,5 +1,5 @@
 # author: repository owner (own text, may be committed)
-# title: Losowa zwrotka
+# title: Losowa zwrotka na poczekaniu
 # source: written by the author for this project
 
 Joł! Joł! dzięki za szesnaście, będę się streszczał!
