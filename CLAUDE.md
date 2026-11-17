@@ -25,9 +25,10 @@ A small web app for Polish lyrics and poems: paste a text, get a phonetic transc
 | --- | --- | --- |
 | `npm run dev` | Local dev server | phase 1 |
 | `npm run lint` | ESLint | phase 1 |
-| `npm run typecheck` | `tsc --noEmit` (all tsconfig projects) | phase 1 |
+| `npm run typecheck` | `tsc -b` (all tsconfig projects, no emit) | phase 1 |
 | `npm run test` | Vitest, single run | phase 1 |
 | `npm run build` | Production build | phase 1 |
+| `npm run preview` | Serve the production build locally | phase 1 |
 | `npm run ipa -- "<text>"` | Print IPA, syllables and stress for each word | phase 2 |
 | `npm run analyze -- <file.txt>` | Print rhymes, scheme and stats for a text file | phase 3 |
 | `npm run eval` | Accuracy against the gold sets and poems, writes `eval/results.md` | phase 5 |
@@ -36,7 +37,7 @@ Keep this table up to date when scripts change.
 
 ## Technical rules
 
-- Vite + React + TypeScript (strict, no `any`) + Tailwind. Tests with Vitest. Scripts in `scripts/` run with `tsx` and must work on Windows.
+- Vite + React + TypeScript (strict, no `any`) + Tailwind. Tests with Vitest. TypeScript is pinned to `~6.0` because `typescript-eslint` does not support TS 7 yet; do not upgrade it until that changes. Scripts in `scripts/` run with `tsx` and must work on Windows.
 - **The analysis engine is pure TypeScript in `src/lib/`** with no React and no DOM imports, so it is fully unit-testable and usable from scripts. React components only render its output.
 - Data flow: `text -> tokenize -> phonetics (per word) -> rhymes (per text) -> stats`. Each step is a pure function with typed input and output (see SPEC section 3).
 - Keep functions small. Every phonetic rule has at least one test that names the rule.
